@@ -30,8 +30,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final TextEditingController judulController = TextEditingController();
-  final TextEditingController isiController = TextEditingController();
+  TextEditingController judulController = TextEditingController();
+  TextEditingController isiController = TextEditingController();
 
   //ambil data dari database
   List<Map<String, dynamic>> catatan = [];
@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 margin: const EdgeInsets.all(15),
                 child: ListTile(
                   title: Text(catatan[index]['judul']),
-                  subtitle: Text(catatan[index]['deskripsi']),
+                  subtitle: Text(catatan[index]['isi']),
                   trailing: SizedBox(
                     width: 100,
                     child: Row(
@@ -103,12 +103,12 @@ class _MyHomePageState extends State<MyHomePage> {
     refreshCatatan();
   }
 
-  //membuat form tambah
+  //form tambah
   void modalForm(int id) async {
     if (id != null) {
       final dataCatatan = catatan.firstWhere((element) => element['id'] == id);
       judulController.text = dataCatatan['judul'];
-      isiController.text = dataCatatan['deskripsi'];
+      isiController.text = dataCatatan['isi'];
     }
 
     showModalBottomSheet(
@@ -132,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     TextField(
                       controller: isiController,
-                      decoration: const InputDecoration(hintText: 'deskripsi'),
+                      decoration: const InputDecoration(hintText: 'isi'),
                     ),
                     const SizedBox(
                       height: 20,
